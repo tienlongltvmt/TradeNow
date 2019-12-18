@@ -1,17 +1,109 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+  ScrollView,
+} from 'react-native';
+import {Avatar} from 'react-native-elements';
+
+import {Toolbar} from '../../components';
+import FormProfile from '../../components/form/FormProfile';
 
 export default class ProfileActivity extends React.Component {
+  _onPressEdit = () => {
+    this.props.navigation.navigate('EditProfile');
+  };
+
   render() {
     return (
       <View style={styles.container}>
-        <Text> adkajsdjkad</Text>
+        <Toolbar style={styles.toolbar} />
+        <ScrollView style={styles.viewAllBody}>
+          <View style={styles.body}>
+            <Avatar
+              rounded
+              size="xlarge"
+              source={{
+                uri:
+                  'https://i.pinimg.com/564x/b8/2f/15/b82f15bd600f94a83e4f69a4cf188603.jpg',
+              }}
+            />
+            <View style={styles.headerbody}>
+              <Text style={styles.txtUsername}>Trần Tiến Long</Text>
+              <Text style={styles.txtEmail}>longttph05657@fpt.edu.vn</Text>
+              <TouchableOpacity
+                style={styles.editProfile}
+                onPress={this._onPressEdit}>
+                <Text style={styles.txtEdit}>Edit Profile</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+          <View style={styles.viewbody}>
+            <FormProfile title="Thông tin " />
+            <FormProfile title="" />
+            <FormProfile title="Pending Shipments" />
+            <FormProfile title="Finished Orders" />
+          </View>
+          <View style={styles.viewbody}>
+            <FormProfile title="Invite Friends" />
+            <FormProfile title="Customer Support" />
+            <FormProfile title="Rate Our App" />
+            <FormProfile title="Make a Suggestion" />
+          </View>
+        </ScrollView>
       </View>
     );
   }
 }
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
+    backgroundColor: '#E3E3E3',
+  },
+  toolbar: {
+    position: 'relative',
+  },
+  body: {
+    marginTop: 10,
+    flexDirection: 'row',
+    justifyContent: 'center',
+  },
+  headerbody: {
+    marginLeft: 20,
+  },
+  editProfile: {
+    width: 150,
+    borderWidth: 1,
+    borderRadius: 20,
+    marginTop: 10,
+  },
+  txtEdit: {
+    fontSize: 15,
+    fontWeight: 'bold',
+    padding: 5,
+    textAlign: 'center',
+    color: '#727C8E',
+  },
+  txtUsername: {
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+  txtEmail: {
+    fontSize: 12,
+    marginTop: 10,
+  },
+  viewbody: {
+    height: 200,
+    backgroundColor: '#FFFFFF',
+    marginHorizontal: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    padding: 20,
+    marginBottom: 5,
+  },
+  viewAllBody: {
     flex: 1,
   },
 });

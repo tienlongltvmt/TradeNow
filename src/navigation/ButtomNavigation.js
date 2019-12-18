@@ -1,4 +1,5 @@
 import React from 'react';
+import {View, Text} from 'react-native';
 import {createAppContainer, createSwitchNavigator} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
@@ -18,9 +19,20 @@ import RegisterActivity from '../screen/regiterandlogin/RegisterActivity';
 // Splash
 import SplashActivity from '../screen/splash/SplashActivity';
 
+// Profile
+import EditProfileActivity from '../screen/profile/EditProfileActivity';
+import IconProvider from '../components/IconProvider';
 const BottomNavigation = createStackNavigator(
   {
     default: createBottomTabNavigator({
+      Profile: {
+        screen: ProfileActivity,
+        navigationOptions: {
+          tabBarIcon: ({tintColor}) => (
+            <Icon name="user" size={24} color={tintColor} />
+          ),
+        },
+      },
       Home: {
         screen: HomeActivity,
         navigationOptions: {
@@ -37,7 +49,7 @@ const BottomNavigation = createStackNavigator(
           ),
         },
       },
-      Message: {
+      Trade: {
         screen: MessageActivity,
         navigationOptions: {
           tabBarIcon: ({tintColor}) => (
@@ -53,14 +65,6 @@ const BottomNavigation = createStackNavigator(
           ),
         },
       },
-      Profile: {
-        screen: ProfileActivity,
-        navigationOptions: {
-          tabBarIcon: ({tintColor}) => (
-            <Icon name="user" size={24} color={tintColor} />
-          ),
-        },
-      },
     }),
   },
   {
@@ -69,6 +73,12 @@ const BottomNavigation = createStackNavigator(
 );
 
 const AppNavigation = createStackNavigator({
+  EditProfile: {
+    screen: EditProfileActivity,
+    navigationOptions: () => ({
+      header: null,
+    }),
+  },
   SplashActivity: {
     screen: SplashActivity,
     navigationOptions: () => ({

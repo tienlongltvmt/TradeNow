@@ -3,7 +3,7 @@ const blueVersion = {
   primaryLight: '#829BF8',
   primaryGradientStart: '#4f44b6',
   primaryGradientEnd: '#4f44b6',
-  secondaryGradientStart: '#FF1358',
+  secondaryGradientStarts: '#FF1358',
   secondaryGradientEnd: '#FF1358',
   profileGradientStart: '#54CBF6',
   profileGradientEnd: '#49D2D0',

@@ -5,7 +5,7 @@ export default class NotificationActivity extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> adkajsdjkad</Text>
+        <Text> NotificationActivity</Text>
       </View>
     );
   }

@@ -5,7 +5,7 @@ export default class ExChangeActivity extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> adkajsdjkad</Text>
+        <Text> ExChangeActivity</Text>
       </View>
     );
   }

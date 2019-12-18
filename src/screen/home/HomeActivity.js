@@ -6,7 +6,7 @@ export default class HomeActivity extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> adkajsdjkad</Text>
+        <Text> HomeActivity</Text>
       </View>
     );
   }
