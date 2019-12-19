@@ -73,12 +73,6 @@ const BottomNavigation = createStackNavigator(
 );
 
 const AppNavigation = createStackNavigator({
-  EditProfile: {
-    screen: EditProfileActivity,
-    navigationOptions: () => ({
-      header: null,
-    }),
-  },
   SplashActivity: {
     screen: SplashActivity,
     navigationOptions: () => ({
@@ -97,11 +91,17 @@ const AppNavigation = createStackNavigator({
       header: null,
     }),
   },
+  EditProfile: {
+    screen: EditProfileActivity,
+    navigationOptions: () => ({
+      header: null,
+    }),
+  },
 });
 
 export default createAppContainer(
   createSwitchNavigator({
-    Auth: AppNavigation,
     BottomNavigation: BottomNavigation,
+    Auth: AppNavigation,
   }),
 );
