@@ -5,7 +5,7 @@ export default class MessageActivity extends React.Component {
   render() {
     return (
       <View style={styles.container}>
-        <Text> adkajsdjkad</Text>
+        <Text> adkajsdsfsfsfjkad</Text>
       </View>
     );
   }
