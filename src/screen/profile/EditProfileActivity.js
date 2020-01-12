@@ -8,69 +8,78 @@ import {Avatar, CheckBox} from 'react-native-elements';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import ImagePicker from 'react-native-image-picker';
 export default class EditProfileActivity extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      text: '',
-      date: new Date('2020-06-12T14:42:42'),
-      mode: 'date',
-      show: false,
-    };
-  }
-  setDate = (event, date) => {
-    date = date || this.state.date;
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     text: '',
+  //     date: new Date('2020-06-12T14:42:42'),
+  //     mode: 'date',
+  //     show: false,
+  //   };
+  // }
+  // setDate = (event, date) => {
+  //   date = date || this.state.date;
 
-    this.setState({
-      show: Platform.OS === 'ios' ? true : false,
-      date,
-    });
+  //   this.setState({
+  //     show: Platform.OS === 'ios' ? true : false,
+  //     date,
+  //   });
+  // };
+
+  // show = mode => {
+  //   this.setState({
+  //     show: true,
+  //     mode,
+  //   });
+  // };
+
+  // datepicker = () => {
+  //   this.show('date');
+  // };
+
+  // timepicker = () => {
+  //   this.show('time');
+  // };
+  _onPressBack = () => {
+    this.props.navigation.navigate('Profile');
   };
 
-  show = mode => {
-    this.setState({
-      show: true,
-      mode,
-    });
-  };
-
-  datepicker = () => {
-    this.show('date');
-  };
-
-  timepicker = () => {
-    this.show('time'); 
-  };
   render() {
-    const {show, date, mode} = this.state;
-    const options = {
-      title: 'Select Avatar',
-      customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
-      storageOptions: {
-        skipBackup: true,
-        path: 'images',
-      },
-    };
-    ImagePicker.showImagePicker(options, response => {
-      console.log('Response = ', response);
-      if (response.didCancel) {
-        console.log('User cancelled image picker');
-      } else if (response.error) {
-        console.log('ImagePicker Error: ', response.error);
-      } else if (response.customButton) {
-        console.log('User tapped custom button: ', response.customButton);
-      } else {
-        const source = {uri: response.uri};
-        // You can also display the image using data:
-        // const source = { uri: 'data:image/jpeg;base64,' + response.data };
-        this.setState({
-          avatarSource: source,
-        });
-      }
-    });
+    // const {show, date, mode} = this.state;
+    // const options = {
+    //   title: 'Select Avatar',
+    //   customButtons: [{name: 'fb', title: 'Choose Photo from Facebook'}],
+    //   storageOptions: {
+    //     skipBackup: true,
+    //     path: 'images',
+    //   },
+    // };
+    // ImagePicker.showImagePicker(options, response => {
+    //   console.log('Response = ', response);
+    //   if (response.didCancel) {
+    //     console.log('User cancelled image picker');
+    //   } else if (response.error) {
+    //     console.log('ImagePicker Error: ', response.error);
+    //   } else if (response.customButton) {
+    //     console.log('User tapped custom button: ', response.customButton);
+    //   } else {
+    //     const source = {uri: response.uri};
+    //     // You can also display the image using data:
+    //     // const source = { uri: 'data:image/jpeg;base64,' + response.data };
+    //     this.setState({
+    //       avatarSource: source,
+    //     });
+    //   }
+    // });
     return (
       <View style={styles.container}>
         <View style={styles.viewHeader}>
-          <IconProvider name={'close'} size={25} color="#FF6969" />
+          <IconProvider
+            name={'close'}
+            size={25}
+            color="#FF6969"
+            onPress={this._onPressBack}
+          />
         </View>
         <Text style={styles.txtTitel}>Edit Profile</Text>
         <View style={styles.ViewBody}>
@@ -87,7 +96,7 @@ export default class EditProfileActivity extends React.Component {
         <View style={styles.viewInput}>
           <TextInput
             style={styles.input}
-            placeholder="Full Name"
+            placeholder="Full Names"
             onChangeText={text => this.setState({text})}
           />
           <TextInput
@@ -101,7 +110,7 @@ export default class EditProfileActivity extends React.Component {
               18/10/2019
             </Text>
           </View>
-          {show && (
+          {/* {show && (
             <DateTimePicker
               value={date}
               mode={mode}
@@ -109,7 +118,7 @@ export default class EditProfileActivity extends React.Component {
               display="calendar"
               onChange={this.setDate}
             />
-          )}
+          )} */}
           <TextInput
             placeholder="Phone Number"
             style={styles.input}
@@ -123,13 +132,7 @@ export default class EditProfileActivity extends React.Component {
             onChangeText={text => this.setState({text})}
             keyboardType="visible-password"
           />
-          <Buttom
-            style={styles.btnCommit}
-            secondary
-            rounded
-            caption="Commit"
-            // onPress={this._onPressLogin}
-          />
+          <Buttom style={styles.btnCommit} secondary rounded caption="Commit" />
         </View>
       </View>
     );

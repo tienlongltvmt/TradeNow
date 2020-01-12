@@ -7,15 +7,36 @@ import {
   ScrollView,
 } from 'react-native';
 import {Avatar} from 'react-native-elements';
+import Modal from 'react-native-modalbox';
 
 import {Toolbar} from '../../components';
 import FormProfile from '../../components/form/FormProfile';
 
+import ThongtinProfile from './ThongtinProfileActivity';
+
 export default class ProfileActivity extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      isOpen: false,
+    };
+  }
   _onPressEdit = () => {
     this.props.navigation.navigate('EditProfile');
   };
-
+  showModal = item => {
+    try {
+      this.modal1.open();
+      this.setState({author: item.author});
+    } catch (error) {
+      console.log('ajdhjlfdfja');
+    }
+  };
+  commentshow = item => {
+    if (item.author === item.id) {
+      this.showModal();
+    }
+  };
   render() {
     return (
       <View style={styles.container}>
@@ -31,7 +52,9 @@ export default class ProfileActivity extends React.Component {
               }}
             />
             <View style={styles.headerbody}>
-              <Text style={styles.txtUsername}>Trần Tiến Long</Text>
+              <Text style={styles.txtUsername} onPress={this.commentshow}>
+                Trần Tiến Long
+              </Text>
               <Text style={styles.txtEmail}>longttph05657@fpt.edu.vn</Text>
               <TouchableOpacity
                 style={styles.editProfile}
@@ -41,7 +64,7 @@ export default class ProfileActivity extends React.Component {
             </View>
           </View>
           <View style={styles.viewbody}>
-            <FormProfile title="Thông tin " />
+            <FormProfile title="Thông tin " onPress={this.commentshow} />
             <FormProfile title="" />
             <FormProfile title="Pending Shipments" />
             <FormProfile title="Finished Orders" />
@@ -53,10 +76,24 @@ export default class ProfileActivity extends React.Component {
             <FormProfile title="Make a Suggestion" />
           </View>
         </ScrollView>
+        <Modal
+          style={[styles.modal]}
+          ref={ref => {
+            this.modal1 = ref;
+          }}
+          isOpen={this.state.modal}
+          keyboardTopOffset={0}
+          coverScreen={true}
+          backdropPressToClose={false}
+          onClosed={() => this.setState({modal: false})}
+          onOpened={() => this.setState({modal: true})}>
+          <ThongtinProfile style={styles.swipe} />
+        </Modal>
       </View>
     );
   }
 }
+
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -105,5 +142,16 @@ const styles = StyleSheet.create({
   },
   viewAllBody: {
     flex: 1,
+  },
+  modal: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+    elevation: 5,
+    marginBottom: 10,
+  },
+  swipe: {
+    flex: 1,
+    justifyContent: 'center',
   },
 });
